@@ -20,12 +20,14 @@ const LoginScreen = ({navigation}) => {
       <View style={styles.wrapper}>
         <TextInput
           style={styles.input}
+          keyboardType="numeric"
           placeholder="Mobile No"
           onChangeText={text => setMobileNumber(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Enter password"
+          keyboardType="numeric"
           secureTextEntry
           onChangeText={text => setPassword(text)}
         />

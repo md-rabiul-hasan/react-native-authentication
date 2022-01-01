@@ -5,15 +5,22 @@ import { AuthContext } from '../Context/AuthContext';
 import HomeScreen from '../Screens/HomeScreen';
 import LoginScreen from '../Screens/LoginScreen';
 import RegisterScreen from '../Screens/RegisterScreen';
+import SplashScreen from '../Screens/SplashScreen';
 
 const Stack = createNativeStackNavigator();
 
 const NavigationScreen = () => {
-  const {userInfo} = useContext(AuthContext);
+  const {userInfo, splashLoading} = useContext(AuthContext);
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {userInfo.data ? (
+        {splashLoading ? (
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{headerShown: false}}
+          />
+        ) : userInfo.data ? (
           <Stack.Screen name="Home" component={HomeScreen} />
         ) : (
           <>
