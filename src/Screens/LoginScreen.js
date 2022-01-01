@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Button,
     StyleSheet,
@@ -8,21 +8,28 @@ import {
     View
 } from 'react-native';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <TextInput style={styles.input} placeholder="Enter email" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter email"
+          onChangeText={text => setEmail(text)}
+        />
         <TextInput
           style={styles.input}
           placeholder="Enter password"
           secureTextEntry
+          onChangeText={text => setPassword(text)}
         />
         <Button title="Login" />
 
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <Text>Don't have an account ? </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
             <Text style={styles.link}>Register</Text>
           </TouchableOpacity>
         </View>
