@@ -1,13 +1,13 @@
 import React from 'react';
 import NavigationScreen from './src/Component/Navigation';
+import { AuthProvider } from './src/Context/AuthContext';
 
-
-const App = () => { 
+const App = () => {
   return (
-    <NavigationScreen />
+    <AuthProvider>
+      <NavigationScreen />
+    </AuthProvider>
   );
 };
-
-
 
 export default App;

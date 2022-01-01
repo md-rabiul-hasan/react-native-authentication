@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
-    Button,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
+import { AuthContext } from '../Context/AuthContext';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const val = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
+        <Text>{val}</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter email"
