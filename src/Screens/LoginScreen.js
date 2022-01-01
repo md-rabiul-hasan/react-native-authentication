@@ -7,20 +7,21 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { AuthContext } from '../Context/AuthContext';
 
 const LoginScreen = ({navigation}) => {
-  const [email, setEmail] = useState(null);
+  const [mobile_number, setMobileNumber] = useState(null);
   const [password, setPassword] = useState(null);
-  const val = useContext(AuthContext);
+  const {isLoading, login} = useContext(AuthContext);
   return (
     <View style={styles.container}>
+      <Spinner visible={isLoading} />
       <View style={styles.wrapper}>
-        <Text>{val}</Text>
         <TextInput
           style={styles.input}
-          placeholder="Enter email"
-          onChangeText={text => setEmail(text)}
+          placeholder="Mobile No"
+          onChangeText={text => setMobileNumber(text)}
         />
         <TextInput
           style={styles.input}
@@ -28,7 +29,12 @@ const LoginScreen = ({navigation}) => {
           secureTextEntry
           onChangeText={text => setPassword(text)}
         />
-        <Button title="Login" />
+        <Button
+          title="Login"
+          onPress={() => {
+            login(mobile_number, password);
+          }}
+        />
 
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <Text>Don't have an account ? </Text>
